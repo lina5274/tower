@@ -13,6 +13,8 @@ class Level:
             [{'path': self.game.settings.enemy_path, 'speed': 1, 'health': 100, 'image_path': 'assets/enemies/basic_enemy.png'}] * 5,
             [{'path': self.game.settings.enemy_path, 'speed': 1.5, 'health': 150, 'image_path': 'assets/enemies/fast_enemy.png'}] * 7,
             [{'path': self.game.settings.enemy_path, 'speed': 0.75, 'health': 200, 'image_path': 'assets/enemies/strong_enemy.png'}] * 4,
+            [{'path': self.game.settings.enemy_path, 'speed': 1.25, 'health': 175, 'image_path': 'assets/enemies/mid_enemy.png'}] * 6,
+            [{'path': self.game.settings.enemy_path, 'speed': 0.9, 'health': 225, 'image_path': 'assets/enemies/super_strong_enemy.png'}] * 3
         ]
         self.current_wave = 0
         self.spawned_enemies = 0
