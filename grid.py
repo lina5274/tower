@@ -20,7 +20,7 @@ class Grid:
 
     def toggle_select_mode(self):
         """Активируем или деактивируем режим выбора"""
-        self.select_mode_active = not self.select_mode_activ
+        self.select_mode_active = not self.select_mode_active
 
     def place_tower(self, tower=None):
         grid_pos = self.get_grid_position(tower.position)
