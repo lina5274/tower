@@ -2,7 +2,6 @@ import pygame
 from bullet import Bullet
 import math
 
-shoot_sound = 'assets/sounds/shoot.wav'
 
 class Tower(pygame.sprite.Sprite):
     def __init__(self, position, game):
@@ -18,6 +17,7 @@ class Tower(pygame.sprite.Sprite):
         self.last_shot_time = pygame.time.get_ticks()
         self.level = 1
         self.original_image = self.image
+        self.shoot_sound = pygame.mixer.Sound(self.settings.shoot_sound)
 
 
     def upgrade_cost(self):
