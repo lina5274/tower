@@ -60,10 +60,14 @@ class Level:
                 self.spawned_enemies += 1
                 self.last_spawn_time = current_time
 
-        collisions = pygame.sprite.groupcollide(self.bullets, self.enemies, True, False)
-        for bullet in collisions:
+          collisions = pygame.sprite.groupcollide(self.bullets, self.enemies, True, False)
+          for bullet in collisions:
             for enemy in collisions[bullet]:
                 enemy.take_damage(bullet.damage)
+                if enemy.health <= 0:  
+                    self.game.settings.player_money += 50
+                    print(f"Player earned {50} gold for defeating an enemy.")
+
 
         self.enemies.update()
         for tower in self.towers:
