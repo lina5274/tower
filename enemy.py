@@ -1,16 +1,20 @@
 import pygame
 from pygame.math import Vector2
 
+paths = [
+    [(100, 200), (150, 250), (200, 300)],
+    [(50, 350), (100, 400), (150, 450)],
+    [(300, 500), (350, 550), (400, 600)]
+]
 
 class Enemy(pygame.sprite.Sprite):
     def __init__(self, path, speed=2, health=10, image_path=None, game = None):
-
         super().__init__()
         self.image = pygame.Surface((30, 40))
         self.image = pygame.image.load(image_path).convert_alpha()
         self.rect = self.image.get_rect()
         self.game = game
-        self.path = path
+        self.path = random.choice(paths)
         self.path_index = 0
         self.speed = speed
         self.health = health
