@@ -21,7 +21,13 @@ class Tower(pygame.sprite.Sprite):
 
 
     def upgrade_cost(self):
-        return 100 * self.level
+        return 50 * self.level
+
+    def get_upgraded_damage(self):
+        return self.damage + (self.damage * 0.2 * self.level)
+
+    def get_upgraded_rate_of_fire(self):
+        return self.rate_of_fire + (self.rate_of_fire * 0.2 * self.level)
 
     def draw(self, screen):
         mouse_pos = pygame.mouse.get_pos()
@@ -118,17 +124,17 @@ class SniperTower(Tower):
 class MoneyGeneratingTower(Tower):
     def __init__(self, position, game):
         super().__init__(position, game)
-        self.image = pygame.image.load('assets/towers/money_tower.png').convert_alpha()  
+        self.image = pygame.image.load('assets/towers/money_tower.png').convert_alpha()
         self.original_image = self.image
         self.rect = self.image.get_rect(center=self.position)
-        self.tower_range = 50  
-        self.money_generated_per_second = 10  
+        self.tower_range = 50
+        self.money_generated_per_second = 10
         self.last_money_generation_time = pygame.time.get_ticks()
 
     def generate_money(self):
         current_time = pygame.time.get_ticks()
-        if current_time - self.last_money_generation_time >= 1000:  
-            self.game.bank += self.money_generated_per_second  
+        if current_time - self.last_money_generation_time >= 1000:
+            self.game.bank += self.money_generated_per_second
             self.last_money_generation_time = current_time
 
     def draw(self, screen):
