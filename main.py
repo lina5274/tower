@@ -99,13 +99,16 @@ class TowerDefenseGame:
 
         pygame.display.flip()
 
-    def run_game(self):
+        def run_game(self):
         while True:
             self._check_events()
             self._update_game()
 
             if len(self.level.enemies) == 0 and not self.level.all_waves_complete:
                 self.level.start_next_wave()
+
+            if len(self.level.enemies) > 0:
+                self.enemy_appearance_sound.play()
 
             self._draw()
             self.clock.tick(60)
