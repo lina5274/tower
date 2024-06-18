@@ -114,3 +114,27 @@ class SniperTower(Tower):
         shoot_sound.play()
         new_bullet = Bullet(self.position, target.position, self.damage, self.game)
         bullets_group.add(new_bullet)
+
+class MoneyGeneratingTower(Tower):
+    def __init__(self, position, game):
+        super().__init__(position, game)
+        self.image = pygame.image.load('assets/towers/money_tower.png').convert_alpha()  
+        self.original_image = self.image
+        self.rect = self.image.get_rect(center=self.position)
+        self.tower_range = 50  
+        self.money_generated_per_second = 10  
+        self.last_money_generation_time = pygame.time.get_ticks()
+
+    def generate_money(self):
+        current_time = pygame.time.get_ticks()
+        if current_time - self.last_money_generation_time >= 1000:  
+            self.game.bank += self.money_generated_per_second  
+            self.last_money_generation_time = current_time
+
+    def draw(self, screen):
+        super().draw(screen)
+
+    def update(self, enemies, current_time, bullets_group):
+        self.generate_money()
+        super().update(enemies, current_time, bullets_group)
+
