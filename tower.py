@@ -1,6 +1,9 @@
 import pygame
 from bullet import Bullet
 import math
+import pygame.mixer
+from settings import Settings
+
 
 
 class Tower(pygame.sprite.Sprite):
@@ -8,7 +11,7 @@ class Tower(pygame.sprite.Sprite):
         super().__init__()
         self.position = pygame.math.Vector2(position)
         self.game = game
-
+        self.settings = Settings()
         self.image = None
         self.rect = None
         self.tower_range = 0
